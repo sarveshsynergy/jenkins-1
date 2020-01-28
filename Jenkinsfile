@@ -1,5 +1,11 @@
 pipeline {
-  agent any
+  agent {
+        docker {
+            image "sarveshsynergy/helm-installer:latest"
+            label "master"
+            args "-u root:root --entrypoint=''"
+        }
+    }
   stages {
     stage('Grab Creds & deploy to AKS') {
       steps {
@@ -20,4 +26,9 @@ rm -rf kubernetes-ingress'''
     }
 
   }
+  post {
+        always{
+            cleanWs()
+        }
+    }
 }
