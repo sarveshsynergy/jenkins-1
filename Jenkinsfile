@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('') {
       steps {
+        withCredentials([azureServicePrincipal('aks-thru-sp')]) {
         sh '''az login --service-principal --username $AZURE_CLIENT_ID --password $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
 az aks get-credentials --name sym-stratus-dev-rg-nsingh2-aks-norbac --resource-group sym-stratus-dev-rg-nsingh2'''
         sh 'helm ls --all --short | xargs -L1 helm delete'
@@ -14,6 +15,7 @@ helm install --generate-name . '''
         sh '''rm /var/jenkins_home/.kube/config
 cd $WORKSPACE
 rm -rf kubernetes-ingress'''
+        }
       }
     }
 
