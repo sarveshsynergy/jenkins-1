@@ -2,7 +2,7 @@ pipeline {
   agent {
         docker {
             image "forsingh/helm-installer:latest"
-            label "linux"
+            label "master"
             args "-u root:root --entrypoint=''"
         }
     }
