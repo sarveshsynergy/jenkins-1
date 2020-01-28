@@ -1,7 +1,7 @@
 pipeline {
   agent {
         docker {
-            image "sarveshsynergy/helm-installer:latest"
+            image "forsingh/helm-installer:latest"
             label "master"
             args "-u root:root --entrypoint=''"
         }
