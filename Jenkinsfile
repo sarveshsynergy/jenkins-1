@@ -18,7 +18,7 @@ helm install stable/grafana --version 4.4.0 --generate-name'''
         sh '''git clone https://github.com/nginxinc/kubernetes-ingress/
 cd kubernetes-ingress/deployments/helm-chart
 helm install --generate-name . '''
-        sh '''rm /var/jenkins_home/.kube/config
+        sh '''rm ~/.kube/config
 cd $WORKSPACE
 rm -rf kubernetes-ingress'''
         }
